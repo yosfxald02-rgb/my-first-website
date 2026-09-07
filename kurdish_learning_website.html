@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فێربوونی زمانی کوردی</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+header{background:#1f2937;color:white;padding:28px 16px;text-align:center}
+header h1{margin:0 0 8px;font-size:34px}
+header p{margin:0;font-size:17px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:14px;background:white;position:sticky;top:0;z-index:2}
+nav button,.btn{border:0;border-radius:12px;padding:11px 16px;font-size:16px;cursor:pointer}
+main{max-width:850px;margin:auto;padding:18px}
+section{background:white;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 3px 14px #00000012}
+h2{margin-top:0}
+.letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:10px}
+.letter{padding:18px 5px;border-radius:12px;text-align:center;background:#eef2f7;font-size:25px;font-weight:bold}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.word{padding:15px;border:1px solid #ddd;border-radius:12px}
+.quiz button{margin:6px;background:#eef2f7}
+#result{font-weight:bold;font-size:19px}
+footer{text-align:center;padding:30px;color:#667085}
+</style>
+</head>
+<body>
+
+<header>
+<h1>📚 فێربوونی زمانی کوردی</h1>
+<p>بە ئەلفوبێ و وشە و تاقیکردنەوە فێری کوردی ببە</p>
+</header>
+
+<nav>
+<button onclick="show('home')">🏠 سەرەتا</button>
+<button onclick="show('alphabet')">🔤 ئەلفوبێ</button>
+<button onclick="show('words')">📖 وشەکان</button>
+<button onclick="show('quiz')">🧠 تاقیکردنەوە</button>
+</nav>
+
+<main>
+<section id="home">
+<h2>بەخێربێیت 👋</h2>
+<p>ئەم وێبسایتە بۆ فێربوونی بنەڕەتی زمانی کوردی دروستکراوە.</p>
+<p>لە ئەلفوبێ دەست پێ بکە، پاشان وشەکان بخوێنەوە و خۆت تاقی بکەرەوە.</p>
+<button class="btn" onclick="show('alphabet')">دەست پێ بکە 🚀</button>
+</section>
+
+<section id="alphabet" style="display:none">
+<h2>🔤 ئەلفوبێی کوردی</h2>
+<p>ئەمانە ٣٤ پیتی ئەلفوبێی کوردیی سۆرانییە:</p>
+<div class="letters" id="letters"></div>
+</section>
+
+<section id="words" style="display:none">
+<h2>📖 وشەی سادە</h2>
+<div class="words">
+<div class="word"><b>سڵاو</b><br>بۆ سڵاوکردن</div>
+<div class="word"><b>سوپاس</b><br>بۆ دەربڕینی سپاس</div>
+<div class="word"><b>بەڵێ</b><br>واتە Yes</div>
+<div class="word"><b>نەخێر</b><br>واتە No</div>
+<div class="word"><b>کتێب</b><br>Book</div>
+<div class="word"><b>ئاو</b><br>Water</div>
+<div class="word"><b>ماڵ</b><br>House / Home</div>
+<div class="word"><b>هاوڕێ</b><br>Friend</div>
+</div>
+</section>
+
+<section id="quiz" style="display:none" class="quiz">
+<h2>🧠 تاقیکردنەوە</h2>
+<p id="question">وشەی «ئاو» بە ئینگلیزی چییە؟</p>
+<button onclick="answer(false)">Book</button>
+<button onclick="answer(true)">Water</button>
+<button onclick="answer(false)">House</button>
+<p id="result"></p>
+</section>
+</main>
+
+<footer>🌐 وێبسایتی فێربوونی زمانی کوردی</footer>
+
+<script>
+const letters = "ئەبپتجچحخدڕر‌زژسشعغفڤقکگلڵمنهەوۆی".split("");
+document.getElementById("letters").innerHTML =
+  letters.map(l => `<div class="letter">${l}</div>`).join("");
+
+function show(id){
+  ["home","alphabet","words","quiz"].forEach(x=>{
+    document.getElementById(x).style.display = x===id ? "block" : "none";
+  });
+  window.scrollTo(0,0);
+}
+function answer(correct){
+  const r=document.getElementById("result");
+  r.textContent=correct ? "✅ ڕاستە! زۆر باشە 👏" : "❌ هەڵەیە، دووبارە هەوڵ بدە.";
+}
+</script>
+</body>
+</html>
